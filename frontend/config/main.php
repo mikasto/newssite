@@ -19,6 +19,9 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -47,6 +50,13 @@ return [
             'rules' => [
                 'api/<module:\w+>/?' => '<module>/default/index',
                 'api/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['api/v1/news' => 'v1/news'],
+                    'only' => ['index'],
+                    //'pluralize' => false,
+                    //'except' => ['delete'],
+                ],
             ],
         ],
     ],
