@@ -11,3 +11,8 @@ docker-compose up -d --build && docker-compose exec backend composer install && 
 * Backend - http://localhost:21080/
 * Frontend - http://localhost:20080/
 * Adminer for DB - http://localhost:8080/
+
+# Users
+
+* Admin:secret
+* test:test
