@@ -14,5 +14,5 @@ docker-compose up -d --build && docker-compose exec backend composer install && 
 
 # Users
 
-* Admin:secret
+* admin:secret
 * test:test
