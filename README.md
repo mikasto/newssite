@@ -16,3 +16,9 @@ docker-compose up -d --build && docker-compose exec backend composer install && 
 
 * admin:secret
 * test:test
+
+# Use
+
+http://localhost:20080/api/v1/news?fields=title,body&expand=rubrics
+auth bearer token = user's "Auth Key"
+format JSON
