@@ -26,6 +26,19 @@ class News extends \yii\db\ActiveRecord
         return 'news';
     }
 
+    public function fields()
+    {
+        $fields = parent::fields();
+        return $fields /*+ [
+            'rubrics' => $this->getRubrics(),
+        ]*/;
+    }
+
+    public function extraFields()
+    {
+        return ['rubrics'];
+    }
+
     /**
      * {@inheritdoc}
      */

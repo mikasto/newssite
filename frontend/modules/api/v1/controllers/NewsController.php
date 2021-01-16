@@ -3,6 +3,7 @@
 namespace frontend\modules\api\v1\controllers;
 
 use yii\rest\ActiveController;
+use yii\data\ActiveDataProvider;
 use yii\filters\auth\HttpBearerAuth;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
@@ -32,7 +33,7 @@ class NewsController extends ActiveController
     
     public function actions()
     {
-        $actions = parent::actions();
+        //$actions = parent::actions();
         
         // disable defaults
         return [];
@@ -47,6 +48,17 @@ class NewsController extends ActiveController
         return new ActiveDataProvider([
             'query' => News::find(),
         ]);
+    }
+
+    /**
+     * Lists all News models by rubric include.
+     * @return mixed
+     */
+    public function actionInsideRubric()
+    {
+        /*return new ActiveDataProvider([
+            'query' => News::find(),
+        ]);*/
     }
     
     /**
