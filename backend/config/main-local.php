@@ -2,9 +2,16 @@
 
 $config = [
     'components' => [
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=mysql;dbname=news_db',
+            'username' => 'news_db',
+            'password' => 'secret',
+            'charset' => 'utf8',
+        ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'Xq20fomqP4ooArqpo5tL9a76v9J_VjqC',
+            'baseUrl' => '',
+            'cookieValidationKey' => 'faWZ42h57544XIT2dsmBvvUqtDfsomE',
         ],
     ],
 ];
@@ -19,6 +26,7 @@ if (!YII_ENV_TEST) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'allowedIPs' => ['127.0.0.1', '::1', '192.168.*.*', '*']
     ];
 }
 
