@@ -12,8 +12,8 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
-        'api-v1' => [
-            'class' => 'app\modules\api\v1\Api',
+        'v1' => [
+            'class' => 'frontend\modules\api\v1\Api',
         ],
     ],
     'components' => [
@@ -45,6 +45,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'api/<module:\w+>/?' => '<module>/default/index',
+                'api/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ],
         ],
     ],
