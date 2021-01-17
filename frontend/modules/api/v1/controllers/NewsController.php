@@ -2,12 +2,15 @@
 
 namespace frontend\modules\api\v1\controllers;
 
+use common\models\NewsRubric;
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use yii\filters\auth\HttpBearerAuth;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use common\models\News;
+use common\models\Rubric;
+use common\models\NewsRubrics;
 
 class NewsController extends ActiveController
 {
@@ -23,7 +26,8 @@ class NewsController extends ActiveController
     public function verbs()
     {
         return [
-            //'index' => ['GET', 'HEAD'],
+            'index' => ['GET', 'HEAD'],
+            'rubric' => ['GET', 'HEAD'],
             //'view' => ['GET'],
             //'create' => ['POST'],
             //'update' => ['PUT', 'PATCH'],
@@ -54,11 +58,24 @@ class NewsController extends ActiveController
      * Lists all News models by rubric include.
      * @return mixed
      */
-    public function actionInsideRubric()
+    public function actionRubric($rubric_id)
     {
         /*return new ActiveDataProvider([
-            'query' => News::find(),
+            'query' => Rubric::find()->getParents()
+                /*->joinWith('parents r2')
+                ->joinWith('parents r3')
+                ->andWhere(['rubric.rubric_id' => $rubric_id])
+                ->orWhere(['r2.rubric_id' => $rubric_id])
+                ->orWhere(['r3.rubric_id1' => $rubric_id]),
         ]);*/
+        return new ActiveDataProvider([
+            'query' => News::find()
+                ->joinWith('rubrics')
+                ->joinWith('rubrics r2')
+                ->joinWith('rubrics r3')
+                ->orWhere(['rubric.rubric_id' => $rubric_id])
+                ->orWhere(['rubric.parent_id' => $rubric_id])
+        ]);
     }
     
     /**

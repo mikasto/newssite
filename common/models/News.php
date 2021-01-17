@@ -93,6 +93,7 @@ class News extends \yii\db\ActiveRecord
      */
     public function getRubrics()
     {
-        return $this->hasMany(Rubric::className(), ['rubric_id' => 'rubric_id'])->viaTable('news_rubric', ['news_id' => 'news_id']);
+        return $this->hasMany(Rubric::className(), ['rubric_id' => 'rubric_id'])
+            ->viaTable('news_rubric', ['news_id' => 'news_id']);
     }
 }

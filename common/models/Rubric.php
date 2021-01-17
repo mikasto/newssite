@@ -67,4 +67,14 @@ class Rubric extends \yii\db\ActiveRecord
     {
         return $this->hasMany(News::className(), ['news_id' => 'news_id'])->viaTable('news_rubric', ['rubric_id' => 'rubric_id']);
     }
+
+    /**
+     * Gets query for Parents rubrics.
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParents()
+    {
+        return $this->hasMany(self::className(), ['rubric_id' => 'parent_id']);
+    }
 }

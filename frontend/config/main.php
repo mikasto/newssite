@@ -53,7 +53,7 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => ['api/v1/news' => 'v1/news'],
-                    'only' => ['index'],
+                    'only' => ['index', 'rubric'],
                     //'pluralize' => false,
                     //'except' => ['delete'],
                 ],
