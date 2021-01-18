@@ -42,7 +42,4 @@ services:
       - mysql
     links:
       - mysql
-
-  
-
       
