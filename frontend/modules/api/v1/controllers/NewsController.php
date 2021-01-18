@@ -60,21 +60,14 @@ class NewsController extends ActiveController
      */
     public function actionRubric($rubric_id)
     {
-        /*return new ActiveDataProvider([
-            'query' => Rubric::find()->getParents()
-                /*->joinWith('parents r2')
-                ->joinWith('parents r3')
-                ->andWhere(['rubric.rubric_id' => $rubric_id])
-                ->orWhere(['r2.rubric_id' => $rubric_id])
-                ->orWhere(['r3.rubric_id1' => $rubric_id]),
-        ]);*/
         return new ActiveDataProvider([
             'query' => News::find()
-                ->joinWith('rubrics')
-                ->joinWith('rubrics r2')
-                ->joinWith('rubrics r3')
-                ->orWhere(['rubric.rubric_id' => $rubric_id])
-                ->orWhere(['rubric.parent_id' => $rubric_id])
+                ->joinWith('rubrics r1')
+                ->leftJoin('rubric r2', 'r1.parent_id = r2.rubric_id')
+                ->leftJoin('rubric r3', 'r2.parent_id = r3.rubric_id')
+                ->orWhere(['r1.rubric_id' => $rubric_id])
+                ->orWhere(['r2.rubric_id' => $rubric_id])
+                ->orWhere(['r3.rubric_id' => $rubric_id])
         ]);
     }
     
