@@ -32,6 +32,6 @@ Get all news by rubric & included rubrics
 --header 'Authorization: Bearer {auth_key}'
 </code>
 
-auth bearer token = user's "Auth Key"
-format JSON
-rubric_id from table rubric
+{auth_key} = user's "Auth Key"
+
+{rubric_id} from table rubric
